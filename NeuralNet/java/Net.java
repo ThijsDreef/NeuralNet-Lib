@@ -120,14 +120,6 @@ public class Net
     }
     visualEpoch = epochError / input.length;
   }
-  public void printResult()
-  {
-    float[] result = getResults();
-    System.out.print("result: ");
-    for (int i = 0; i < result.length; i++)
-      System.out.printf("%f ", result[i]);
-    System.out.println();
-  }
   public void save()
   {
     // format not the best but im able to live with it
