@@ -12,15 +12,15 @@ Neuron::Neuron(int numOutPuts, int index)
   }
 }
 
-void Neuron::feedForward(Layer & prevLayer)
+void Neuron::feedForward(std::vector<Neuron> & prevLayer)
 {
   float sum = 0;
-  for (unsigned int n = 0; n < prevLayer.neurons.size(); n++)
-    sum += prevLayer.neurons[n].getOutput() * prevLayer.neurons[n].getOutputWeights[index];
+  for (unsigned int n = 0; n < prevLayer.size(); n++)
+    sum += prevLayer[n].getOutput() * prevLayer[n].outputWeights[index];
   output = transferFunction(sum);
 }
 
-void Neuron::calcHiddenGradients(Layer & nextLayer)
+void Neuron::calcHiddenGradients(std::vector<Neuron> & nextLayer)
 {
   float dow = sumDOW(nextLayer);
   gradient = dow * derevativeTransferFunction(output);
@@ -37,21 +37,16 @@ void Neuron::setOutput(float output)
   this->output = output;
 }
 
-float Neuron::getOutput()
-{
-  return output;
-}
-
-float transferFunction(float x)
+float Neuron::transferFunction(float x)
 {
   return tanhf(x);
 }
 
-float Neuron::sumDOW(Layer & nextLayer)
+float Neuron::sumDOW(std::vector<Neuron> & nextLayer)
 {
   float sum = 0.0f;
-  for (unsigned int n = 0; n < nextLayer.neurons.size(); n++)
-    sum += outputWeights[n] * nextLayer.neurons[n].gradient;
+  for (unsigned int n = 0; n < nextLayer.size(); n++)
+    sum += outputWeights[n] * nextLayer[n].gradient;
   return sum;
 }
 
@@ -60,11 +55,11 @@ float Neuron::derevativeTransferFunction(float x)
   return 1.0f - x * x;
 }
 
-void updateInputWeights(Layer & prevLayer)
+void Neuron::updateInputWeights(std::vector<Neuron> & prevLayer)
 {
-  for (unsigned int n = 0; n < prevLayer.neurons.size(); n++)
+  for (unsigned int n = 0; n < prevLayer.size(); n++)
   {
-    Neuron & neuron = prevLayer.neurons[n];
+    Neuron & neuron = prevLayer[n];
     float oldDeltaWeight = neuron.deltaWeights[index];
     float newDeltaWeight = learnRate * neuron.getOutput() * gradient + momentum * oldDeltaWeight;
     neuron.deltaWeights[index] = newDeltaWeight;
@@ -89,5 +84,5 @@ float Neuron::getOutput()
 
 Neuron::~Neuron()
 {
-  
+
 }
