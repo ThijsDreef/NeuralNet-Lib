@@ -1,6 +1,7 @@
 #ifndef LAYER__
 #define LAYER__
 #include "neuron.h"
+#include <vector>
 
 class Layer
 {

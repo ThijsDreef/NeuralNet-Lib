@@ -67,6 +67,11 @@ void Neuron::updateInputWeights(std::vector<Neuron> & prevLayer)
   }
 }
 
+void Neuron::setGradient(float gradient)
+{
+  this->gradient = gradient;
+}
+
 int Neuron::getIndex()
 {
   return index;

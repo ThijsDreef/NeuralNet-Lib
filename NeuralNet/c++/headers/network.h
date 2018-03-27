@@ -2,11 +2,12 @@
 #define NETWORK__
 #include "neuron.h"
 #include "layer.h"
-#include <string>
+#include <string.h>
 #include <iostream>
 #include <fstream>
 #include <stdio.h>
 #include <stdlib.h>
+
 
 class Network
 {
@@ -24,10 +25,9 @@ public:
   void feedForward(std::vector<float> input);
   void backProp(std::vector<float> target);
   std::vector<float> getResults();
-  // std::vector<std::string>> split(std::string str, std::string sep);
-  // void trainBackProp(std::vector<std::vector<float>> inputs, std::vector<std::vector<float>> target, float minEpochError)
-  // void save(std::string filename);
-  // void load(std::string filename);
+  std::vector<std::string> split(std::string str, std::string sep);
+  void save(std::string filename);
+  void load(std::string filename, int & percentage);
   Network (std::string file);
   Network (std::vector<int> topology);
   virtual ~Network ();
