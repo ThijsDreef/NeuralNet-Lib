@@ -3,6 +3,7 @@
 #include "layer.h"
 #include <cstdlib>
 #include <math.h>
+#include <vector>
 
 class Neuron
 {
@@ -26,7 +27,6 @@ public:
   void setOutput(float output);
   void updateInputWeights(Layer & prevLayer);
   void setIndex(int index);
-  void getGradient();
   int getIndex();
   float getGradient();
   float getOutput();
