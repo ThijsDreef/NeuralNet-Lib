@@ -2,7 +2,7 @@
 
 Network::Network(std::string file)
 {
-  load(file);
+  // load(file);
 }
 
 Network::Network(std::vector<int> topology)
@@ -11,6 +11,11 @@ Network::Network(std::vector<int> topology)
   layers.reserve(topology.size());
   for (unsigned int i = 0; i < topology.size(); i++)
     layers.push_back(Layer(topology[i], (i == topology.size() - 1) ? 0 : topology[i + 1]));
+}
+
+Network::~Network()
+{
+
 }
 
 void Network::feedForward(std::vector<float> input)
@@ -76,8 +81,8 @@ std::string Network::vecToString(std::vector<int> top)
   return result;
 }
 
-void Network::save(std::string filename)
-{
+// void Network::save(std::string filename)
+// {
   // std::fstream file (filename, std::ios::in | std::ios::out | std::ios::trunc);
   // if (!file.is_open());
   //   return;
@@ -98,9 +103,9 @@ void Network::save(std::string filename)
   //   }
   // }
   // file.close();
-}
+// }
 
-std::vector<std::string> Network::split(std::string str,std::string sep){
+// std::vector<std::string> Network::split(std::string str,std::string sep){
     // char* cstr=const_cast<char*>(str.c_str());
     // char* current;
     // std::vector<std::string> arr;
@@ -110,11 +115,11 @@ std::vector<std::string> Network::split(std::string str,std::string sep){
     //     current=strtok(NULL,sep.c_str());
     // }
     // return arr;
-    return std::vector<std::string>();
-}
+    // return std::vector<std::string>();
+// }
 
-void load(std::string filename, int & percentage)
-{
+// void load(std::string filename, int & percentage)
+// {
   // std::fstream file(filename, std::ios::in | std::ios::out | std::ios::app);
   // std::string line = "";
   // std::getline(file, line);
@@ -173,4 +178,4 @@ void load(std::string filename, int & percentage)
   //   }
   // }
 
-}
+// }
