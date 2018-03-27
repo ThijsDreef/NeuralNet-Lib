@@ -1,7 +1,7 @@
 #ifndef NEURON__
 #define NEURON__
 #include "layer.h"
-#include <rand>
+#include <cstdlib>
 #include <math.h>
 
 class Neuron
